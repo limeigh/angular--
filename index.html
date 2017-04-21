@@ -5,6 +5,7 @@
 	<title>第一个单页应用程序</title>
 	<style></style>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/angular/angular.js"></script>
 </head>
 <body>
 	<ul>
@@ -15,6 +16,10 @@
 	<div id="main">
 		
 
+	</div>
+	<div ng-app>
+		<input ng-model="val" type="text" name="" id="">
+		<input ng-click="val = (val-0) + 1" type="button" value="值+1">
 	</div>
 	<script>
 		var type=''

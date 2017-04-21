@@ -27,11 +27,11 @@ gulp.task('style',function(){
 
 gulp.task('html',function(){
 	gulp.src('index.html')
-	.pipe(htmlmin({collapseWhitespace:true}))
+	.pipe(htmlmin({collapseWhitespace:true,minifyJS:true}))
 	.pipe(gulp.dest('./dist'))
 })
 
 gulp.task('mywatch',function(){
-	gulp.run('script')
-	gulp.watch(['./*.js'],['script'])
+	// gulp.run('script')
+	gulp.watch(['./index.html'],['html'])
 })
