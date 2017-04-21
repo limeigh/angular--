@@ -50,5 +50,23 @@
 			})
 		})
 	</script>
+	<script>
+		(function(global,factory){
+			factory(global)
+		})(window !== "undefined"?window:this,function(window){
+			var jQuery=function(selector){
+				return new jQuery.fn.init(selector)
+			}
+			jQuery.fn=jQuery.prototype={
+				
+			}
+			var init=jQuery.fn.init=function(selector){
+				var nodes=document.querySelectorAll(selector)
+				[].push.apply(this,nodes)
+			}
+			init.prototype=jQuery.fn
+			window.$=window.jQuery=jQuery
+		})
+	</script>
 </body>
 </html>
