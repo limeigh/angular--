@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this is a register page</title>
+	<script src="node_modules/angular/angular.js"></script>
+</head>
+<body>
+<!-- view begin-->
+	<table  ng-app="myApp" ng-controller="registerController">
+		<tr>
+			<td>用户名:<input type="text" ng-model="userName"></td>
+		</tr>
+		<tr>
+			<td>用户类型:<input type="text" name="" ng-model="userType"></td>
+		</tr>
+		<tr>
+			<td>密码:<input type="text" name="" ng-model="pwd"></td>
+		</tr>
+		<tr>
+			<td>确认密码:<input type="text" name="" ng-model="confirmPwd"></td>
+		</tr>
+		<tr>
+			<td>注册协议:<input type="checkbox" name="" ng-model="isagree"></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="" value="注册" ng-click="register()"></td>
+		</tr>
+		<tr>
+			<td>{{errormsg}}</td>
+		</tr>
+	</table>
+<!-- viem end-->
+	<script>
+		var app=angular.module('myApp',[])
+		// controller begin
+		app.controller('registerController',function($scope){
+			// init value
+			$scope.userName=''
+			$scope.userType=''
+			$scope.pwd=''
+			$scope.confirmPwd=''
+			$scope.errormsg=''
+			$scope.isagree=false
+			// init shijian
+			$scope.register=function(){
+				if($scope.userName.length<6){
+					$scope.errormsg='用户名长度不能小于6!'
+					return
+				}
+				if($scope.pwd.length<6){
+					$scope.errormsg='密码长度不能小于6!'
+					return
+				}
+				if($scope.pwd != $scope.confirmPwd){
+					$scope.errormsg='两次密码输入不一致!'
+					return
+				}
+			}
+			var user= new register($scope.userName,$scope.pwd,$socpe.userType)
+			user.save()
+		})
+		//controller end 
+		// model
+		function user(name,pwd,type){
+			this.name=name
+			this.pwd=pwd
+			this.type=type
+		}
+		user.prototype.save=function(){
+
+		}
+	</script>
+</body>
+</html>
