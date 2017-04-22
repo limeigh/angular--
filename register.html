@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- view begin-->
-	<table  ng-app="myApp" ng-controller="registerController">
+	<table ng-app="myApp" ng-controller="registerController">
 		<tr>
 			<td>用户名:<input type="text" ng-model="userName"></td>
 		</tr>
@@ -57,17 +57,17 @@
 					return
 				}
 			}
-			var user= new register($scope.userName,$scope.pwd,$socpe.userType)
+			var user= new users($scope.userName,$scope.pwd,$scope.userType)
 			user.save()
 		})
 		//controller end 
 		// model
-		function user(name,pwd,type){
+		function users(name,pwd,type){
 			this.name=name
 			this.pwd=pwd
 			this.type=type
 		}
-		user.prototype.save=function(){
+		users.prototype.save=function(){
 
 		}
 	</script>
