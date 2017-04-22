@@ -2,27 +2,18 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>第一个单页应用程序</title>
+	<title>angular使用</title>
 	<style></style>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="node_modules/angular/angular.js"></script>
 </head>
 <body>
+<!-- angular实现单页面动态生成结构 -->
 	<ul>
 		<li><a href="#find">发现音乐</a></li>
 		<li><a href="#mine">我的音乐</a></li>
 		<li><a href="#myfriend">我的朋友</a></li>
 	</ul>
-	<div id="main">
-		
-
-	</div>
-	<div ng-app>
-		<input ng-model="val" type="text" name="" id="">
-		<input ng-click="val = (val-0) + 1" type="button" value="值+1">
-		<h1>{{val2}}</h1>
-		<input ng-model="val2" type="text" name="" id="">
-	</div>
 	<script>
 		var type=''
 		window.addEventListener("hashchange",function(){
@@ -52,22 +43,23 @@
 			})
 		})
 	</script>
+	<!-- angular实现计算器+ -->
+	<div ng-app="myApp" ng-controller="calc">
+		<input ng-model="A" type="text"> +
+		<input ng-model="B" type="text">
+		<input ng-click="add()" type="button" value="=">
+		<input ng-model="result" type="text">
+		<h1>{{A}}</h1>
+	</div>
 	<script>
-		(function(global,factory){
-			factory(global)
-		})(window !== "undefined"?window:this,function(window){
-			var jQuery=function(selector){
-				return new jQuery.fn.init(selector)
+		var app=angular.module('myApp',['module1','module2'])
+		angular.module('module1',[])
+		angular.module('module2',[])
+		app.controller('calc',function($scope){
+			$scope.A=$scope.B=$scope.result=0
+			$scope.add=function(){
+				$scope.result=($scope.A-0)+($scope.B-0)
 			}
-			jQuery.fn=jQuery.prototype={
-				
-			}
-			var init=jQuery.fn.init=function(selector){
-				var nodes=document.querySelectorAll(selector)
-				[].push.apply(this,nodes)
-			}
-			init.prototype=jQuery.fn
-			window.$=window.jQuery=jQuery
 		})
 	</script>
 </body>
