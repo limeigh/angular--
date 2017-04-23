@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jqLite</title>
+	<style>
+		.tmp{
+			color: red
+		}
+	</style>
+	<script src="node_modules/angular/angular.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		angular.element(document).ready(function(){
+			var jqLite=angular.element(document.getElementById("box"))
+			jqLite.html("hello wrold")
+			jqLite.addClass("tmp")
+		})
+	</script>
+</body>
+</html>

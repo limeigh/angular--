@@ -12,7 +12,13 @@
 			<td>用户名:<input type="text" ng-model="userName"></td>
 		</tr>
 		<tr>
-			<td>用户类型:<input type="text" name="" ng-model="userType"></td>
+			<td>
+				<select ng-model="userType">
+					<option value="temp01">student</option>
+					<option value="temp02">teacher</option>
+					<option value="temp03">doctor</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>密码:<input type="text" name="" ng-model="pwd"></td>
