@@ -56,9 +56,11 @@
 					$scope.errormsg='两次密码输入不一致!'
 					return
 				}
+				var user= new users($scope.userName,$scope.pwd,$scope.userType)
+				// console.log(user)
+				var result=user.save()
+				result?$scope.errormsg="注册成功!":$scope.errormsg="注册失败!"
 			}
-			var user= new users($scope.userName,$scope.pwd,$scope.userType)
-			user.save()
 		})
 		//controller end 
 		// model
@@ -68,7 +70,21 @@
 			this.type=type
 		}
 		users.prototype.save=function(){
-
+			var userArr=JSON.parse(window.localStorage.getItem('users')  || '[]')
+			console.log(userArr)
+			for(var i=0;i<userArr.length;i++){
+				if(userArr[i].name === this.name){
+					return false
+				}
+			}
+			// userArr.forEach(function(v,i){
+			// 	if(v.name === this.name){
+			// 		return false
+			// 	}
+			// })
+			userArr.push({name:this.name,pwd:this.pwd,type:this.type})
+			window.localStorage.setItem('users',JSON.stringify(userArr))
+			return true
 		}
 	</script>
 </body>
