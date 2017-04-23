@@ -3,11 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>this is a register page</title>
-	<script src="node_modules/angular/angular.js"></script>
+	<style>
+		.ng-cloak{
+			display: none
+		}
+	</style>
 </head>
 <body>
 <!-- view begin-->
-	<table ng-app="myApp" ng-controller="registerController">
+	<table ng-app="myApp" ng-controller="registerController as obj">
+	<tr>
+		<td ng-bind="obj.test"></td>
+	</tr>
 		<tr>
 			<td>用户名:<input type="text" ng-model="userName"></td>
 		</tr>
@@ -33,41 +40,44 @@
 			<td><input type="button" name="" value="注册" ng-click="register()"></td>
 		</tr>
 		<tr>
-			<td>{{errormsg}}</td>
+			<td class="ng-cloak">{{errormsg}}</td>
 		</tr>
 	</table>
 <!-- viem end-->
+	<script src="node_modules/angular/angular.js"></script>
 	<script>
 		var app=angular.module('myApp',[])
 		// controller begin
-		app.controller('registerController',function($scope){
+		app.controller('registerController',['$log','$scope',function(a,b){
 			// init value
-			$scope.userName=''
-			$scope.userType=''
-			$scope.pwd=''
-			$scope.confirmPwd=''
-			$scope.errormsg=''
-			$scope.isagree=false
+			a.log("hello world!")
+			this.test='testing'
+			b.userName=''
+			b.userType=''
+			b.pwd=''
+			b.confirmPwd=''
+			b.errormsg=''
+			b.isagree=false
 			// init shijian
-			$scope.register=function(){
-				if($scope.userName.length<6){
-					$scope.errormsg='用户名长度不能小于6!'
+			b.register=function(){
+				if(b.userName.length<6){
+					b.errormsg='用户名长度不能小于6!'
 					return
 				}
-				if($scope.pwd.length<6){
-					$scope.errormsg='密码长度不能小于6!'
+				if(b.pwd.length<6){
+					b.errormsg='密码长度不能小于6!'
 					return
 				}
-				if($scope.pwd != $scope.confirmPwd){
-					$scope.errormsg='两次密码输入不一致!'
+				if(b.pwd != b.confirmPwd){
+					b.errormsg='两次密码输入不一致!'
 					return
 				}
-				var user= new users($scope.userName,$scope.pwd,$scope.userType)
+				var user= new users(b.userName,b.pwd,b.userType)
 				// console.log(user)
 				var result=user.save()
-				result?$scope.errormsg="注册成功!":$scope.errormsg="注册失败!"
+				result?b.errormsg="注册成功!":b.errormsg="注册失败!"
 			}
-		})
+		}])
 		//controller end 
 		// model
 		function users(name,pwd,type){
@@ -77,7 +87,7 @@
 		}
 		users.prototype.save=function(){
 			var userArr=JSON.parse(window.localStorage.getItem('users')  || '[]')
-			console.log(userArr)
+			// console.log(userArr)
 			for(var i=0;i<userArr.length;i++){
 				if(userArr[i].name === this.name){
 					return false
