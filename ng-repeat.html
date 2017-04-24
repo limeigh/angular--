@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-repeat</title>
+</head>
+<body ng-app="myApp"  ng-controller="controller">
+	<ul>
+		<li ng-repeat="item in arr track by $index">{{item}},{{$index}}</li>
+	</ul>
+	<script src="node_modules/angular/angular.js"></script>
+	<script>
+		var app=angular.module("myApp",[])
+		app.controller("controller",["$scope",function($scope){
+			$scope.users=[
+			{name:'name1',age:18},
+			{name:'name2',age:19},
+			{name:'name3',age:20},
+			{name:'name4',age:21},
+			{name:'name5',age:22},
+			{name:'name6',age:23},
+			];
+			$scope.obj={
+				a:{name:'name',age:18},
+				b:{name:'name',age:19},
+				c:{name:'name',age:18},
+				d:{name:'name',age:18},
+				e:{name:'name',age:18}
+			}
+			$scope.arr=[1,2,3,4,5,1]
+		}])
+	</script>
+</body>
+</html>
