@@ -16,5 +16,8 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-uglify": "^2.1.2",
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "angular": "^1.6.4"
   }
 }

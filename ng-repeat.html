@@ -3,22 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ng-repeat</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+			margin:0 auto;
+			width: 80%;
+		}
+		li{
+			line-height: 35px;
+			margin:2px;
+			color:white;
+		}
+		.red{
+			background-color: red
+		}
+		.green{
+			background-color: green
+		}
+	</style>
 </head>
 <body ng-app="myApp"  ng-controller="controller">
 	<ul>
-		<li ng-repeat="item in arr track by $index">{{item}},{{$index}}</li>
+		<li ng-repeat="item in users" class="{{$even?'red':'green'}}" ng->{{item.name}},{{item.age}},{{$index}}</li>
 	</ul>
 	<script src="node_modules/angular/angular.js"></script>
 	<script>
 		var app=angular.module("myApp",[])
 		app.controller("controller",["$scope",function($scope){
 			$scope.users=[
-			{name:'name1',age:18},
-			{name:'name2',age:19},
-			{name:'name3',age:20},
-			{name:'name4',age:21},
-			{name:'name5',age:22},
-			{name:'name6',age:23},
+			{id:1,name:'name1',age:18},
+			{id:2,name:'name2',age:19},
+			{id:3,name:'name3',age:20},
+			{id:4,name:'name4',age:21},
+			{id:5,name:'name5',age:22},
+			{id:6,name:'name6',age:23},
 			];
 			$scope.obj={
 				a:{name:'name',age:18},
